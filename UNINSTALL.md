@@ -18,6 +18,8 @@ adb uninstall dev.local.anc
 
 Uninstall removes its private preferences/data and Android permission grants, including Nearby devices, notifications and the installed boot receiver/provider. No additional accessibility, overlay, location, Internet or log-reading permission is used by the final app. The temporary accessibility probe was removed during development; preserve other apps' accessibility services rather than clearing the entire accessibility list.
 
+Version1.3 also declares POST_PROMOTED_NOTIFICATIONS for the native camera capsule. Uninstall removes its channel/app grants and Live Alerts association; no separate overlay permission needs revoking. To disable just this visual while keeping ANC control, open Plus Key ANC → LIVE ALERTS and turn **Show Live Updates on Live Alerts** OFF. If the separate **ANC Native Alert Test** feasibility app is installed, remove it independently with `adb uninstall com.nish.ancnativeprobe`; it has no role in the integrated controller.
+
 ## 2. Remove Shizuku's automatic startup privileges
 
 Shizuku may be used by other apps. Full removal below disables their Shizuku access too. If keeping it for other purposes, revoke only this controller's authorization, but still remove its WRITE_SECURE_SETTINGS privilege before resetting debugging: its boot receiver would otherwise re-enable USB/wireless ADB and non-expiring authorization.

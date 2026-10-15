@@ -29,17 +29,19 @@ public class ControllerService extends Service {
  BluetoothAdapter adapter; BluetoothA2dp a2dp;
  InputBridge bridge; Gestures gestures; Handler main=new Handler(Looper.getMainLooper());
  PowerManager.WakeLock gestureWake;
+ NativeAlert nativeAlert;
  final BroadcastReceiver connections=new BroadcastReceiver(){public void onReceive(Context c,Intent i){updateCapture();}};
  void updateCapture(){
   boolean connected=false;try{target();connected=true;}catch(Exception ignored){}
   if(bridge!=null)bridge.enabled(connected);
-  if(!connected){gestures.cancel();close();note("Buds disconnected: native key released");}
+  if(!connected){gestures.cancel();close();if(nativeAlert!=null)nativeAlert.clear();note("Buds disconnected: native key released");}
  }
  final BluetoothProfile.ServiceListener profile=new BluetoothProfile.ServiceListener(){
   public void onServiceConnected(int p,BluetoothProfile proxy){a2dp=(BluetoothA2dp)proxy;note("A2DP proxy ready");updateCapture();}
   public void onServiceDisconnected(int p){a2dp=null;updateCapture();}
  };
  public void onCreate(){super.onCreate();
+  nativeAlert=new NativeAlert(this,main);
   NotificationManager nm=getSystemService(NotificationManager.class);nm.createNotificationChannel(new NotificationChannel("anc","Buds ANC diagnostics",NotificationManager.IMPORTANCE_LOW));
   PendingIntent openApp=PendingIntent.getActivity(this,0,new Intent(this,MainActivity.class),PendingIntent.FLAG_IMMUTABLE|PendingIntent.FLAG_UPDATE_CURRENT);
   PendingIntent stop=PendingIntent.getService(this,1,new Intent(this,ControllerService.class).setAction("STOP"),PendingIntent.FLAG_IMMUTABLE|PendingIntent.FLAG_UPDATE_CURRENT);
@@ -124,6 +126,7 @@ public class ControllerService extends Service {
    else if(desired==Anc.Mode.TRANSPARENCY)send(Protocol.mode(4));
    else send(Protocol.level(desired)); // Verified to enable ANC from OFF and transparency.
    Anc.Mode actual=query();note(actual==desired?"CONFIRMED "+actual:"MISMATCH desired="+desired+" actual="+actual);
+   if(actual==desired)nativeAlert.show(actual);
  }
  void executeGesture(Anc.Gesture gesture){
   try{
@@ -135,6 +138,6 @@ public class ControllerService extends Service {
   }catch(Exception e){note("GESTURE ERROR "+e.getMessage());close();}
  }
  void close(){observedMode=Anc.Mode.UNKNOWN;observedAt=0;BluetoothSocket s=socket;socket=null;if(s!=null)try{s.close();}catch(Exception ignored){}synchronized(state){reply=Anc.Mode.UNKNOWN;state.notifyAll();}}
- public void onDestroy(){running=false;if(bridge!=null)bridge.close();gestures.cancel();unregisterReceiver(connections);if(gestureWake.isHeld())gestureWake.release();close();worker.shutdownNow();timer.shutdownNow();if(a2dp!=null)adapter.closeProfileProxy(BluetoothProfile.A2DP,a2dp);super.onDestroy();}
+ public void onDestroy(){running=false;if(nativeAlert!=null)nativeAlert.close();if(bridge!=null)bridge.close();gestures.cancel();unregisterReceiver(connections);if(gestureWake.isHeld())gestureWake.release();close();worker.shutdownNow();timer.shutdownNow();if(a2dp!=null)adapter.closeProfileProxy(BluetoothProfile.A2DP,a2dp);super.onDestroy();}
  public IBinder onBind(Intent i){return null;}
 }

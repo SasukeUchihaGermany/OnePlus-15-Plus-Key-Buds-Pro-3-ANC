@@ -1,5 +1,7 @@
 # OnePlus 15 Plus Key → OnePlus Buds Pro 3 ANC
 
+**One combined app:** install the root [BudsAncLab.apk](BudsAncLab.apk) (**Plus Key ANC**, `dev.local.anc`, v1.3) for both physical-key ANC control and the native speaker/mode camera capsule. No separate animation/notification app is required. Shizuku remains the input privilege bridge. The historical `experiments/native-alert/` directory contains feasibility-test source only and is not part of installation.
+
 - [Start here: every setup step, prerequisites and OxygenOS settings](SETUP.md)
 - [Build and AI-agent reinstall/recovery guide](RECOVERY.md)
 - [Full uninstall, permission removal and debugging reset](UNINSTALL.md)
@@ -15,6 +17,7 @@ Wear the earbuds and connect them to the phone. Open **Plus Key ANC**, tap **ENA
 - Double: Auto.
 - Hold: ANC/Auto/Unknown → Transparency; Transparency → Off; Off → Transparency.
 - STOP releases capture and stops the app service. Disconnecting the verified earbuds releases capture automatically.
+- Native camera capsule: after a query-confirmed mode command (including Plus Key gestures), a speaker icon and short mode label appear briefly. Open **LIVE ALERTS** in the app and enable **Show Live Updates on Live Alerts** for **Plus Key ANC**. This is separate from normal notification permission. Full notification title: `Nish's ANC Engine: STATE`. No overlay permission or separate animation service is needed. See [Live Alerts setup](SETUP.md#native-camera-capsule-live-alerts).
 - TIMING changes double-press and hold thresholds. Defaults: 220ms after release for double recognition, 600ms hold, 25ms noise filter. Increase the double window if your taps are slower. A single must wait for that window to avoid executing the first tap of a double.
 
 No PC or Internet connection is used during normal operation. Tasker is not required.
@@ -32,7 +35,7 @@ adb install -r .\BudsAncLab.apk
 adb shell am start -n dev.local.anc/.MainActivity
 ```
 
-The APK keeps its original diagnostic filename; its installed label is Plus Key ANC, version 1.2. The build script uses a local development signing key in the project .local/local.p12. Preserve that key for compatible updates. A fresh key requires uninstall/reinstall and renewed grants. Never share that development key as a release credential.
+The APK keeps its original diagnostic filename; its installed label is Plus Key ANC, version 1.3. The build script uses a local development signing key in the project .local/local.p12. Preserve that key for compatible updates. A fresh key requires uninstall/reinstall and renewed grants. Never share that development key as a release credential.
 
 Grant Nearby devices, notifications and Shizuku authorization when prompted. On this phone the user approved Developer Options → **Disable system optimisation** ON (formerly Disable permission monitoring); verified property persist.sys.permission.enable=false. This is an OEM-wide change whose own warning lists power/security/system/display effects. It is required here for successful Shizuku authorization and service binding. To revert it, turn that switch OFF. Key capture may stop working afterward. No root or bootloader change was made.
 

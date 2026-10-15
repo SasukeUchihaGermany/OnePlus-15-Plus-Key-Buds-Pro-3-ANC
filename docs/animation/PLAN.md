@@ -6,6 +6,8 @@ Follow-up research is in [RESEARCH.md](RESEARCH.md): service/overlay rules, sour
 
 The user subsequently authorized a connected-phone **native Fluid Cloud feasibility test** as an alternative. It passed: see [isolated native-alert experiment](../../experiments/native-alert/README.md). That authorization covers the probe; no Lottie implementation or automatic controller integration has started. Native capsule shows short mode labels, while the full title fits the notification card; native timing/layout remains system-controlled.
 
+The user then explicitly requested tying the native short text/speaker capsule to the ANC key. Version1.3 integrates native notifications directly into the existing controller's confirmed set-result path, with the per-app Live Alerts switch. See root SETUP.md and VALIDATION.md. No Lottie or overlay implementation has started; the separate native probe is no longer needed for normal operation. This supersedes the earlier integration hold for this specific native-feedback scope.
+
 ## Scope and source of truth
 
 [PROJECT-BRIEF.md](PROJECT-BRIEF.md) preserves the supplied specification. Its embedded instruction to implement immediately is superseded by the user's latest instruction to analyze/set up only and wait for token refresh. Do not automatically resume based on elapsed time or a guessed reset time.

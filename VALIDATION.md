@@ -1,5 +1,13 @@
 # Validation record
 
+## Native Live Alerts integration (v1.3)
+
+The controller now posts a native speaker/mode capsule only from set() after a desired/actual query match, dispatched on the main thread so notification failures cannot fail the Bluetooth command. Root gesture and protocol host tests still pass73assertions. Rebuilt, aligned, signed, verified and installed versionCode4/version1.3 with the original private signing key.
+
+Real diagnostic mode commands confirmed HIGH, MEDIUM, LOW and AUTO. Before enabling the correct controller's Live Alerts permission, ANC still succeeded and the visual path reported unavailable. Enabling **Show Live Updates on Live Alerts** for **Plus Key ANC** then produced LIVE ALERT LOW and LIVE ALERT AUTO. An integrated-device screenshot confirmed the native speaker/**Auto** capsule after the real AUTO query confirmation at12:25:57.445, notification dispatch at12:25:57.451. The earlier feasibility probe separately verified automatic timeout/removal. The integration requests1500ms but exact visual presentation is system-controlled.
+
+Physical input logs on the final installed build recorded LONG: TRANSPARENCY→OFF at12:27:31.222, followed by LIVE ALERT OFF at12:27:31.230; SINGLE: OFF→HIGH at12:27:34.614, followed by LIVE ALERT HIGH at12:27:34.621. Thus the previously dedicated OFF+single trial is now device-observed too. The owner subsequently confirmed the integrated feature works well. Physical SINGLE/LONG are independently evidenced above; no separate timestamped integrated DOUBLE screenshot is claimed. No claim yet of a repeated reboot test for v1.3 or external-squeeze visual integration (external-only changes intentionally do not trigger visuals). Existing Shizuku startup and key detection logic are unchanged.
+
 Host tests: 73 assertions passed. APK compiled, aligned, signed, signature-verified and installed. These results alone are not physical acceptance.
 
 ## Bluetooth proof on the phone
@@ -32,7 +40,7 @@ Owner subsequently confirmed the faster build works locked/screen-off and feels 
 | T01 HIGH + single → MEDIUM | Passed physical + query |
 | T02 MEDIUM + single → LOW | Passed physical + query |
 | T03 LOW + single → HIGH | Passed physical + query |
-| T04 OFF + single → HIGH | Host logic passed; dedicated physical trial outstanding |
+| T04 OFF + single → HIGH | Passed physical capture + query on v1.3 |
 | T05 TRANSPARENCY + single → HIGH | Passed physical + query |
 | T06 AUTO + single → HIGH | Host logic passed; dedicated physical trial outstanding |
 | T07 double → AUTO | Passed physical from HIGH; all initial states host-tested |

@@ -95,6 +95,20 @@ adb shell am start -n dev.local.anc/.MainActivity
 
 Leave the native Plus Key assignment as it is. On the original phone it was Translate; no remapping in native Settings was necessary. The app grabs the dedicated key only while the verified paired Buds Pro 3 is A2DP-connected. **STOP** releases it and disables controller startup.
 
+## Native camera capsule (Live Alerts)
+
+Version1.3 adds native OxygenOS Fluid Cloud feedback directly to the existing controller. No separate overlay or animation app is required. The tested speaker icon remains. All six confirmed modes map to short labels: High, Medium, Low, Auto, Off, Transparent.
+
+1. Update the controller with the bundled signed APK and keep normal Nearby devices/notification/Shizuku grants.
+2. Open **Plus Key ANC → LIVE ALERTS**. Verify the settings page title is **Plus Key ANC**, not the earlier **ANC Native Alert Test** probe. On this firmware, a reused notification-settings screen could otherwise show the previous app; the in-app shortcut now opens a fresh settings task.
+3. Enable **Show Live Updates on Live Alerts** for Plus Key ANC. Normal **Allow notifications** must also stay enabled. The manifest declares POST_PROMOTED_NOTIFICATIONS; the OEM Live Alerts switch controls its app-op. No overlay permission or extra Shizuku grant is added.
+4. Return to the home screen and press the Plus Key. The capsule appears after the resulting mode is confirmed by an earbud query. It shows the speaker and short mode; the notification title contains `Nish's ANC Engine: STATE`. Requested expiry is1500ms; native SystemUI animations/scheduling control the precise visible duration.
+5. Single/double/hold and the app's direct mode buttons all share the confirmed-result path. Plain QUERY/CONNECT and external squeeze changes do not independently trigger the capsule. Failed or mismatched sets do not announce the requested mode. ANC remains usable if Live Alerts are disabled; only visual feedback is skipped.
+
+Turn this per-app switch OFF to disable the capsule without disabling ANC control. STOP/service destruction and target disconnection clear the transient feedback. Android versions below36 skip native Live Alerts. The persistent foreground-controller notification remains separate and is not promoted into an always-on capsule.
+
+The old feasibility probe is optional and can be removed with `adb uninstall com.nish.ancnativeprobe`; it is not used by this integration. Its uninstall does not affect controller grants. Native promotion behavior was tested on this firmware, not guaranteed across all OxygenOS releases.
+
 ## 6. Exempt both apps from battery optimization
 
 We added battery exemptions for **both** the controller and Shizuku. With USB still authorized, run:

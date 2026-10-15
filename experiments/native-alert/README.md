@@ -1,5 +1,7 @@
 # Native Fluid Cloud / Live Alerts feasibility probe
 
+**Historical diagnostic source only.** Native capsule feedback is now integrated into the root **Plus Key ANC v1.3** app alongside ANC control. The owner confirmed the combined feature works. The standalone probe was uninstalled from the phone and its APK removed from this branch's current files. Do not install this probe for normal use; install only root BudsAncLab.apk plus the existing Shizuku prerequisite. The build/reproduce notes below describe the earlier experiment.
+
 **Device-tested 15 October 2026. Native capsule works on the connected OnePlus15 CPH2747 / OxygenOS CPH2747_16.0.9.400(EX01), Android16 API36, sdk_full36.0.** This is a small isolated Java test app, not the planned Kotlin/Lottie implementation and not connected to actual Bluetooth state. Values are simulated. The user explicitly authorized this native-notification experiment after the earlier implementation pause. The existing controller, helper, Shizuku and phone ANC settings were left unchanged.
 
 ## Observed results

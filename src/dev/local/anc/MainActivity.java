@@ -18,13 +18,14 @@ public class MainActivity extends Activity {
   LinearLayout box=new LinearLayout(this);box.setOrientation(1);box.setPadding(24,40,24,24);
   TextView title=new TextView(this);title.setTextSize(24);title.setText("Plus Key ANC");box.addView(title);
   TextView help=new TextView(this);help.setText("Single: High → Medium → Low\nDouble: Auto\nHold: Transparency ↔ Off\n\nWear the earbuds. Reboot recovery needs configured Shizuku and Wi-Fi/debugging. If capture is unavailable, start Shizuku, then START here. STOP releases the Plus Key.\n");box.addView(help);
-  String[] actions={"ENABLE KEY","CONNECT","QUERY","TIMING","HIGH","MEDIUM","LOW","AUTO","OFF","TRANSPARENCY","STOP"};
+  String[] actions={"ENABLE KEY","CONNECT","QUERY","TIMING","HIGH","MEDIUM","LOW","AUTO","OFF","TRANSPARENCY","STOP","LIVE ALERTS"};
   LinearLayout row=null;
   for(int n=0;n<actions.length;n++){
    String action=actions[n];
    if(n%2==0){row=new LinearLayout(this);box.addView(row);}
    Button button=new Button(this);button.setText(action.equals("CONNECT")?"START":action);row.addView(button,new LinearLayout.LayoutParams(0,-2,1));
    button.setOnClickListener(v->{
+    if(action.equals("LIVE ALERTS")){startActivity(new Intent(android.provider.Settings.ACTION_APP_NOTIFICATION_SETTINGS).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK).putExtra(android.provider.Settings.EXTRA_APP_PACKAGE,getPackageName()));return;}
     if(action.equals("TIMING")){timing();return;}
     if(action.equals("ENABLE KEY")){
      if(!Shizuku.pingBinder()){Intent open=getPackageManager().getLaunchIntentForPackage("moe.shizuku.privileged.api");if(open!=null)startActivity(open);return;}
