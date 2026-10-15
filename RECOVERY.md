@@ -1,5 +1,7 @@
 # Reinstall and recovery guide for an AI agent
 
+Follow [SETUP.md](SETUP.md) for the complete ordered installation, Developer options, Shizuku pairing/authorization and reboot setup. This document adds build and agent-specific recovery context. For a full removal and security/debugging reset, use [UNINSTALL.md](UNINSTALL.md).
+
 Read AGENTS.md, README.md and VALIDATION.md first. Target tested: OnePlus 15 CPH2747, Android 16, OxygenOS CPH2747_16.0.9.400(EX01), OnePlus Buds Pro 3. Do not assume another firmware has the same input node or privileged APIs.
 
 ## Restore the controller
@@ -35,4 +37,4 @@ Test single three times (High, Medium, Low cycle), double (Auto), hold (Transpar
 
 ## Publishing
 
-Intended remote: git@github.com:SasukeUchihaGermany/OnePlus15_ANC_Key.git. The owner authorized the initial upload after the successful reboot test on 15 October 2026. Future agents should publish only when requested. Before pushing, verify this repository's SSH identity is the personal GitHub account; the PC has multiple Git credentials. Set any SSH identity and Git author locally for this repository. Do not change global credentials. Never commit .local/, signing keys, pairing codes, ADB keys, tool caches or private device identifiers. Include source, pinned libraries/licenses, APK, tests and recovery documentation.
+Remote: git@github.com:SasukeUchihaGermany/OnePlus-15-Plus-Key-Buds-Pro-3-ANC.git. The owner authorized publication and the descriptive repository rename after the successful reboot test on 15 October 2026. Future agents should publish only when requested. Before pushing, verify this repository's SSH identity is the personal GitHub account; the PC has multiple Git credentials. Set any SSH identity and Git author locally for this repository. Do not change global credentials. Never commit .local/, signing keys, pairing codes, ADB keys, tool caches or private device identifiers. Include source, pinned libraries/licenses, APK, tests and recovery documentation.

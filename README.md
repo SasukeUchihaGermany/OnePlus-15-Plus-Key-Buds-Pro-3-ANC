@@ -1,6 +1,7 @@
-# Plus Key ANC
+# OnePlus 15 Plus Key → OnePlus Buds Pro 3 ANC
 
-- [Complete setup and reinstall guide](RECOVERY.md)
+- [Start here: every setup step, prerequisites and OxygenOS settings](SETUP.md)
+- [Build and AI-agent reinstall/recovery guide](RECOVERY.md)
 - [Full uninstall, permission removal and debugging reset](UNINSTALL.md)
 - [Physical validation and known limits](VALIDATION.md)
 

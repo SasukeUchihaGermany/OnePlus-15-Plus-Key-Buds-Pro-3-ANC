@@ -1,6 +1,6 @@
 # OnePlus ANC controller
 
-Read RECOVERY.md, VALIDATION.md, PROGRESS.md and RESEARCH.md before changing device configuration. User authorizes building, installing and testing a local Android controller. No root, bootloader changes, system partition writes, earbud reset/unpair, unrelated data collection, or screenshot deletion.
+Read SETUP.md, RECOVERY.md, VALIDATION.md, PROGRESS.md and RESEARCH.md before changing device configuration. User authorizes building, installing and testing a local Android controller. No root, bootloader changes, system partition writes, earbud reset/unpair, unrelated data collection, or screenshot deletion.
 
 Keep proof stages separate: verify Android RFCOMM control and actual-state reads before hardware integration. Socket write is not confirmation. Record every real-device observation separately from host tests. Never pass an unperformed acceptance test.
 
