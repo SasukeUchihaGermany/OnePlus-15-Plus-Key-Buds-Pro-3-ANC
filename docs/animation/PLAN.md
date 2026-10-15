@@ -2,6 +2,8 @@
 
 Status: **preparation only; implementation is on hold until the user explicitly resumes it**. Prepared 15 October 2026 on branch `Animation-implementation` from main commit `4c9ce82`. The requested human-readable branch name was “Animation implementation”; Git does not allow spaces. No new app, animation asset, dependency installation, APK build, device deployment or permission change has been performed for this extension. The existing controller remains unchanged.
 
+Follow-up research is in [RESEARCH.md](RESEARCH.md): service/overlay rules, source-level timing findings, version/license candidates, trigger integration and five user decisions. It supersedes the provisional technical choices below. Research and questions are authorized; implementation stays on hold even after answers until the user separately resumes it.
+
 ## Scope and source of truth
 
 [PROJECT-BRIEF.md](PROJECT-BRIEF.md) preserves the supplied specification. Its embedded instruction to implement immediately is superseded by the user's latest instruction to analyze/set up only and wait for token refresh. Do not automatically resume based on elapsed time or a guessed reset time.
