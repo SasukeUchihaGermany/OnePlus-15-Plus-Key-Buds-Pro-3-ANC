@@ -1,0 +1,10 @@
+.build/
+.local/
+.tools/
+*.p12
+*.jks
+*.keystore
+adbkey
+adbkey.pub
+local.properties
+*.apk.idsig
